@@ -44,6 +44,9 @@ export default {
     };
   },
   computed: {
+    /**
+     * extract part of the text
+     */
     cutString: function () {
       return this.text.substr(0, this.amount);
     },

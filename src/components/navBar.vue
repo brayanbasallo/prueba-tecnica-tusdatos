@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <nav>
-      <ul class="flex p-4 items-center">
+      <ul class="flex py-4 items-center">
         <li>
           <router-link
             class="text-xl font-bold text-gray-800 hover:text-purple-600"
