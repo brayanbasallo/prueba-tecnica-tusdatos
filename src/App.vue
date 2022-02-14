@@ -1,10 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="bg-gray-100">
+    <div class="container m-auto">
+      <nav id="nav">
+        <ul class="flex justify-between p-4">
+          <li>
+            <router-link
+              class="text-xl font-bold text-gray-800 hover:text-green-600"
+              to="/"
+              >BRAND</router-link
+            >
+          </li>
+          <li class="grid grid-cols-2 gap-2">
+            <router-link class="text-gray-800 hover:text-green-600" to="/"
+              >Home</router-link
+            >
+            <router-link class="text-gray-800 hover:text-green-600" to="/about"
+              >About</router-link
+            >
+          </li>
+        </ul>
+      </nav>
+      <div>
+        <router-view />
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
 
@@ -15,18 +34,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
