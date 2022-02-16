@@ -13,6 +13,7 @@
           $ {{ product.price }}
         </div>
         <div
+          @click="$emit('add-to-car', product.id)"
           class="
             rounded-full
             bg-gray-100

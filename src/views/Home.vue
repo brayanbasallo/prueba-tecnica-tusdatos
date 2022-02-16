@@ -4,7 +4,16 @@
     <div v-else>
       <div class="text-right py-4">
         <input
-          class="w-7/12 border border-gray-300 rounded-md h-10 px-2"
+          class="
+            w-full
+            md:w-7/12
+            border border-gray-300
+            rounded
+            h-10
+            px-2
+            focus:border-purple-600
+            outline-none
+          "
           type="search"
           placeholder="Filtrar producto"
           v-model="filter"
@@ -25,9 +34,12 @@
           v-for="product in filterProducts"
           :key="product.id"
         >
-          <product :product="product"></product>
+          <product v-on:add-to-car="addToCar" :product="product"></product>
         </div>
       </section>
+    </div>
+    <div class="text-gray-400" v-if="filterProducts.length <= 0 && !isLoading">
+      no se encontraron productos...
     </div>
   </div>
 </template>
@@ -49,6 +61,7 @@ export default {
       products: [],
       isLoading: true,
       filter: "",
+      car: {},
     };
   },
   created() {
@@ -61,6 +74,9 @@ export default {
       .finally(() => {
         this.isLoading = false;
       });
+
+    if (localStorage.getItem("car"))
+      this.car = JSON.parse(localStorage.getItem("car"));
   },
   computed: {
     /**
@@ -77,6 +93,30 @@ export default {
             item.title.toLowerCase().includes(this.filter.toLowerCase())
           );
         });
+    },
+  },
+  methods: {
+    addToCar(productId) {
+      this.car = JSON.parse(localStorage.getItem("car"));
+      let product;
+      if (
+        this.car != null &&
+        this.car.find((element) => element.id == productId)
+      ) {
+        this.car.find((element) => {
+          if (element.id == productId) element.amount++;
+        });
+      } else {
+        product = { id: productId, amount: 1 };
+      }
+
+      if (this.car == null) {
+        this.car = [product];
+      } else if (product != null) {
+        this.car.push(product);
+      }
+
+      localStorage.setItem("car", JSON.stringify(this.car));
     },
   },
 };
