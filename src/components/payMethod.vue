@@ -1,6 +1,10 @@
 <template>
   <div class="p-5 text-left">
     <h2 class="font-bold text-2xl">Finalizar Compra</h2>
+    <p>
+      Los información ingresada no tiene que ser verídica ya que no hay
+      integración con pasarela de pago
+    </p>
     <div class="border border-gray-100 p-5 rounded">
       <div class="pb-5 border-b-2 border-gray-200 border-dashed items-center">
         <div class="flex">
@@ -43,6 +47,7 @@
                 focus:border-purple-600
                 outline-none
               "
+              v-model="model.name"
               type="text"
               name=""
               id="name"
@@ -63,6 +68,7 @@
               "
               type="text"
               name=""
+              v-model="model.lastName"
               id="lastName"
               placeholder="Ingresa tus apellidos"
             />
@@ -83,6 +89,7 @@
               "
               type="text"
               name=""
+              v-model="number"
               id="cardName"
               placeholder="0000 0000 0000 0000"
             />
@@ -102,6 +109,7 @@
                 "
                 type="text"
                 name=""
+                v-model="date"
                 id="name"
                 placeholder="MM/YYYY"
                 maxlength="7"
@@ -121,6 +129,7 @@
                 "
                 type="password"
                 name=""
+                v-model="cvv"
                 id="name"
                 placeholder="000"
                 maxlength="3"
@@ -139,7 +148,7 @@
             p-3
             mt-5
           "
-          @click="$emit('pay-now')"
+          @click="payNow"
         >
           Finalizar Compra
         </button>
@@ -149,6 +158,52 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      model: {
+        name: "",
+        lastName: "",
+      },
+      number: "",
+      cvv: "",
+      date: "",
+    };
+  },
+  watch: {
+    date: function (newVAlue, oldValue) {
+      if (newVAlue.length == 2) this.date = newVAlue + "/";
+      if (newVAlue.length == 2 && oldValue.length == 3) this.date = newVAlue;
+    },
+  },
+  methods: {
+    payNow() {
+      if (
+        this.model.name != "" &&
+        this.model.lastName != "" &&
+        this.number != "" &&
+        this.date != "" &&
+        this.cvv != ""
+      ) {
+        this.$emit("pay-now");
+      } else {
+        this.$toast.error("Por favor llena todos los campos", {
+          position: "top-right",
+          timeout: 2041,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false,
+        });
+      }
+    },
+  },
+};
 </script>
 
