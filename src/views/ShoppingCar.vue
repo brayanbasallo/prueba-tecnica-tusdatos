@@ -75,8 +75,7 @@ export default {
   methods: {
     payNow() {
       const number = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-      this.notification.active = false;
-      if (number > 7) {
+      if (number < 7) {
         this.notification.status = true;
         this.notification.message = "Se aprobó tu compra";
         localStorage.removeItem("car");

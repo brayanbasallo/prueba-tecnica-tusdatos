@@ -9,10 +9,10 @@
       grid
       place-items-center
       text-left
+      z-0
     "
-    @click="$emit('close')"
   >
-    <div class="bg-white p-5 rounded w-11/12 md:w-8/12 xl:w-6/12">
+    <div class="bg-white p-5 rounded w-11/12 md:w-8/12 xl:w-6/12 absolute z-20">
       <div class="head flex justify-between">
         <h3 class="font-bold flex">
           <svg

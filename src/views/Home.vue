@@ -115,7 +115,20 @@ export default {
       } else if (product != null) {
         this.car.push(product);
       }
-
+      this.$toast.success("Agregado correctamente", {
+        position: "top-right",
+        timeout: 2041,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        rtl: false,
+      });
       localStorage.setItem("car", JSON.stringify(this.car));
     },
   },
