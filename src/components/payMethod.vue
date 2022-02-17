@@ -1,7 +1,7 @@
 <template>
   <div class="p-5 text-left">
     <h2 class="font-bold text-2xl">Finalizar Compra</h2>
-    <p>
+    <p class="text-gray-400 text-sm pb-2">
       Los información ingresada no tiene que ser verídica ya que no hay
       integración con pasarela de pago
     </p>
